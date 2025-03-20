@@ -56,22 +56,33 @@ const handleCalculation = () => {
     "±": (a, b) => [a + b, a - b],
   };
 
+  const tokenOperators = input.filter((val) => {
+    const regex = /([÷×−+%±])/;
+    return regex.test(val);
+  });
+
+  const set = new Set(tokenOperators);
+  console.log(set);
+
   // Format the array and store in tokens
   const tokens = input
     // Join array together into a string
     .join("")
     // Split string into array with numbers and operators
-    .split(/(\d+)/)
+    .split(/([\d.]+)/)
     // Filter out empty values
     .filter((val) => val);
   console.log(tokens);
 
+  // PEDMAS - arithmic order
+  tokenOperators.sort((a, b) => {});
+
   // Iterate through tokens
-  tokens.forEach((val, i) => {
-    // Store previous and next values in variables
-    const prev = input[i - 1];
-    const next = input[i + 1];
-  });
+  // tokens.forEach((val, i) => {
+  //   // Store previous and next values in variables
+  //   const prev = input[i - 1];
+  //   const next = input[i + 1];
+  // });
 };
 
 // Event listener for each button
