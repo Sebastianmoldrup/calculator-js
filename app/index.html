@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <link href="./output.css" rel="stylesheet" />
+  </head>
+  <body
+    class="bg-gray-100 h-screen flex flex-col items-center justify-center gap-y-16"
+  >
+    <h1 class="text-center text-3xl">JS Calculator</h1>
+    <div class="bg-white rounded-xl shadow-2xl overflow-hidden w-80">
+      <!-- Calculator Display -->
+      <div class="bg-gray-800 p-4">
+        <div class="text-right">
+          <div
+            id="expression"
+            class="text-gray-400 text-sm h-6 overflow-hidden"
+          ></div>
+          <div
+            id="display"
+            class="text-white text-4xl font-light tracking-widest h-12 overflow-hidden"
+          >
+            0
+          </div>
+        </div>
+      </div>
+
+      <!-- Calculator Buttons -->
+      <div class="grid grid-cols-4 gap-px bg-gray-300">
+        <!-- Row 1 -->
+        <button
+          class="calc-btn bg-gray-100 hover:bg-gray-200 p-4 text-gray-700 font-medium text-xl"
+          data-type="clear"
+        >
+          C
+        </button>
+        <button
+          class="calc-btn bg-gray-100 hover:bg-gray-200 p-4 text-gray-700 font-medium text-xl"
+          data-type="negative"
+        >
+          ±
+        </button>
+        <button
+          class="calc-btn bg-gray-100 hover:bg-gray-200 p-4 text-gray-700 font-medium text-xl"
+          data-type="percent"
+        >
+          %
+        </button>
+        <button
+          class="calc-btn bg-orange-400 hover:bg-orange-500 p-4 text-white font-medium text-xl"
+          data-type="operator"
+          data-value="/"
+        >
+          ÷
+        </button>
+
+        <!-- Row 2 -->
+        <button
+          class="calc-btn bg-gray-50 hover:bg-gray-200 p-4 text-gray-800 font-medium text-xl"
+          data-type="number"
+          data-value="7"
+        >
+          7
+        </button>
+        <button
+          class="calc-btn bg-gray-50 hover:bg-gray-200 p-4 text-gray-800 font-medium text-xl"
+          data-type="number"
+          data-value="8"
+        >
+          8
+        </button>
+        <button
+          class="calc-btn bg-gray-50 hover:bg-gray-200 p-4 text-gray-800 font-medium text-xl"
+          data-type="number"
+          data-value="9"
+        >
+          9
+        </button>
+        <button
+          class="calc-btn bg-orange-400 hover:bg-orange-500 p-4 text-white font-medium text-xl"
+          data-type="operator"
+          data-value="*"
+        >
+          ×
+        </button>
+
+        <!-- Row 3 -->
+        <button
+          class="calc-btn bg-gray-50 hover:bg-gray-200 p-4 text-gray-800 font-medium text-xl"
+          data-type="number"
+          data-value="4"
+        >
+          4
+        </button>
+        <button
+          class="calc-btn bg-gray-50 hover:bg-gray-200 p-4 text-gray-800 font-medium text-xl"
+          data-type="number"
+          data-value="5"
+        >
+          5
+        </button>
+        <button
+          class="calc-btn bg-gray-50 hover:bg-gray-200 p-4 text-gray-800 font-medium text-xl"
+          data-type="number"
+          data-value="6"
+        >
+          6
+        </button>
+        <button
+          class="calc-btn bg-orange-400 hover:bg-orange-500 p-4 text-white font-medium text-xl"
+          data-type="operator"
+          data-value="-"
+        >
+          −
+        </button>
+
+        <!-- Row 4 -->
+        <button
+          class="calc-btn bg-gray-50 hover:bg-gray-200 p-4 text-gray-800 font-medium text-xl"
+          data-type="number"
+          data-value="1"
+        >
+          1
+        </button>
+        <button
+          class="calc-btn bg-gray-50 hover:bg-gray-200 p-4 text-gray-800 font-medium text-xl"
+          data-type="number"
+          data-value="2"
+        >
+          2
+        </button>
+        <button
+          class="calc-btn bg-gray-50 hover:bg-gray-200 p-4 text-gray-800 font-medium text-xl"
+          data-type="number"
+          data-value="3"
+        >
+          3
+        </button>
+        <button
+          class="calc-btn bg-orange-400 hover:bg-orange-500 p-4 text-white font-medium text-xl"
+          data-type="operator"
+          data-value="+"
+        >
+          +
+        </button>
+
+        <!-- Row 5 -->
+        <button
+          class="calc-btn bg-gray-50 hover:bg-gray-200 p-4 text-gray-800 font-medium text-xl col-span-2"
+          data-type="number"
+          data-value="0"
+        >
+          0
+        </button>
+        <button
+          class="calc-btn bg-gray-50 hover:bg-gray-200 p-4 text-gray-800 font-medium text-xl"
+          data-type="decimal"
+        >
+          .
+        </button>
+        <button
+          class="calc-btn bg-orange-500 hover:bg-orange-600 p-4 text-white font-medium text-xl"
+          data-type="equals"
+        >
+          =
+        </button>
+      </div>
+    </div>
+
+    <script src="./index.js">
+      // Your JavaScript code will go here
+      // All buttons have useful data attributes to help you implement the functionality:
+      // - data-type: The type of button (number, operator, clear, equals, etc.)
+      // - data-value: The value associated with the button (for numbers and operators)
+
+      // You can access the display elements with:
+      // const display = document.getElementById('display');
+      // const expression = document.getElementById('expression');
+
+      // Good luck implementing the calculator logic!
+    </script>
+  </body>
+</html>
