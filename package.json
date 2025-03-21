@@ -4,6 +4,7 @@
     "tailwindcss": "^4.0.14"
   },
   "scripts": {
+    "dev": "tailwindcss -i ./app/main.css -o ./app/output.css --watch",
     "build": "tailwindcss -i ./app/main.css -o ./app/output.css --minify"
   }
 }
