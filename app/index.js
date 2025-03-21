@@ -3,18 +3,21 @@ const display = document.querySelector("#display");
 const expression = document.querySelector("#expression");
 const buttons = document.querySelectorAll("button");
 
-// Variables
 let input = [];
-const operators = ["÷", "×", "−", "+", "%", "±", "."];
+const operatorKeys = ["÷", "×", "−", "+", "%", "DEL"];
+const operators = {
+  "×": "*",
+  "÷": "/",
+  "%": "%",
+  "+": "+",
+  "−": "-",
+};
 
 // Click function to handle event
 const handleClick = (e) => {
-  // Store target value in variable
   const val = e.target.innerText.trim();
-  // Check if value is an operator and store in variable
-  const currOperator = operators.includes(val);
-  // Check if previous value is an operator and store in variable
-  const prevOperator = operators.includes(input[input.length - 1]);
+  const currOperator = operatorKeys.includes(val);
+  const prevOperator = operatorKeys.includes(input[input.length - 1]);
 
   // Calculate equation
   if (val === "=" && input.length) {
@@ -23,18 +26,30 @@ const handleClick = (e) => {
   }
 
   // Clear display
-  if (val === "C") {
-    display.innerText = "";
+  if (val === "AC") {
+    display.innerText = "0";
+    expression.innerText = "";
     input = [];
     return;
   }
 
-  // Only allow first val to be number or -
+  // Handle exponentation value
+  if (input.length && val === "DEL") {
+    input.pop();
+    input.length
+      ? (display.innerText = input.join(""))
+      : (display.innerText = "0");
+    return;
+  }
+
+  // Sanitize for XSS
+
+  // First value must be of type number or string "-"
   if (!input.length && currOperator && val !== "−") {
     return;
   }
 
-  // Dont allow multiple operators
+  // Dont allow stacking operators
   if (prevOperator && currOperator) {
     return;
   }
@@ -46,43 +61,17 @@ const handleClick = (e) => {
 
 // Calculate function
 const handleCalculation = () => {
-  // Operator actions
-  const actions = {
-    "÷": (a, b) => a / b,
-    "×": (a, b) => a * b,
-    "−": (a, b) => a - b,
-    "+": (a, b) => a + b,
-    "%": (a, b) => a % b,
-    "±": (a, b) => [a + b, a - b],
-  };
-
-  const tokenOperators = input.filter((val) => {
-    const regex = /([÷×−+%±])/;
-    return regex.test(val);
-  });
-
-  const set = new Set(tokenOperators);
-  console.log(set);
-
-  // Format the array and store in tokens
   const tokens = input
-    // Join array together into a string
-    .join("")
-    // Split string into array with numbers and operators
-    .split(/([\d.]+)/)
-    // Filter out empty values
-    .filter((val) => val);
-  console.log(tokens);
+    .map((i) => {
+      if (Object.keys(operators).includes(i)) {
+        return operators[i];
+      }
+      return i;
+    })
+    .join("");
 
-  // PEDMAS - arithmic order
-  tokenOperators.sort((a, b) => {});
-
-  // Iterate through tokens
-  // tokens.forEach((val, i) => {
-  //   // Store previous and next values in variables
-  //   const prev = input[i - 1];
-  //   const next = input[i + 1];
-  // });
+  display.innerText = eval(tokens);
+  expression.innerText = input.join("");
 };
 
 // Event listener for each button
