@@ -63,6 +63,7 @@ const handleInput = (e) => {
 
 const clearDisplay = () => {
   input = [];
+  expression.textContent = "";
   display.textContent = "0";
   return;
 };
